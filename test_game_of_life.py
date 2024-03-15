@@ -2,100 +2,81 @@ import game_of_life
 
 def test_empty_generation():
     # GIVEN
-    initial_generation = [
-        '...',
-        '...',
-        '...'
+    initial_generation = ['...',
+                          '...',
+                          '...'
     ]
     # WHEN
     actual = game_of_life.get_next_generation(
         initial_generation
     )
     # THEN
-    assert actual == [
-        '...',
-        '...',
-        '...'
+    assert actual == ['...',
+                      '...',
+                      '...'
     ]
-    
-def test_with_one_cell_generation():
+
+def test_isolation():
     # GIVEN
-    initial_generation = [
-        '...',
-        '.*.',
-        '...'
+    initial_generation = ['...',
+                          '.o.',
+                          '...'
     ]
     # WHEN
     actual = game_of_life.get_next_generation(
         initial_generation
     )
     # THEN
-    assert actual == [
-        '...',
-        '...',
-        '...'
+    assert actual == ['...',
+                      '...',
+                      '...'
     ]
-    
-def test_with_three_cells_neighbours():
+
+def test_birth():
     # GIVEN
-    initial_generation = [
-        '...',
-        '.*.',
-        '.**'
+    initial_generation = ['.oo',
+                          '..o',
+                          '...'
     ]
     # WHEN
     actual = game_of_life.get_next_generation(
         initial_generation
     )
     # THEN
-    assert actual == [
-        '...',
-        '.**',
-        '.**'
+    assert actual == ['.oo',
+                      '.oo',
+                      '...'
     ]
     
-def test_is_cell_dead():
-     # GIVEN
-    initial_generation = [
-        '.',
-    ]
-    cell_x = 0
-    cell_y = 0
-    # WHEN
-    actual = game_of_life.is_alive_cell(
-        cell_x, cell_y, initial_generation
-    )
-    # THEN
-    assert actual == False
-    
-def test_is_cell_alive():
-     # GIVEN
-    initial_generation = [
-        '*',
-    ]
-    cell_x = 0
-    cell_y = 0
-    # WHEN
-    actual = game_of_life.is_alive_cell(
-        cell_x, cell_y, initial_generation
-    )
-    # THEN
-    assert actual == True
-    
-def test_alive_neigbhours():
+def test_birth_2():
     # GIVEN
-    initial_generation = [
-        '*..',
-        '.*.',
-        '...'
+    initial_generation = ['...',
+                          'o..',
+                          'oo.'
     ]
-    cell_x = 1
-    cell_y = 1
     # WHEN
-    actual = game_of_life.alive_neigbhours(
-        cell_x,
-        cell_y,
+    actual = game_of_life.get_next_generation(
         initial_generation
     )
     # THEN
-    assert actual == 1
+    assert actual == ['...',
+                      'oo.',
+                      'oo.'
+    ]
+
+def test_birth_3():
+    # GIVEN
+    initial_generation = ['...',
+                          '.o.',
+                          'oo.'
+    ]
+    # WHEN
+    actual = game_of_life.get_next_generation(
+        initial_generation
+    )
+    # THEN
+    assert actual == ['...',
+                      'oo.',
+                      'oo.'
+    ]
+    
